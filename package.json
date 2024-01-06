@@ -1,0 +1,21 @@
+{
+  "name": "ez-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "init.js",
+  "type": "module",
+  "bin": {
+    "json": "./init.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^3.3.0",
+    "json-generator": "file:/home/neph/personal/ez-json/ez-json-1.0.0.tgz",
+    "yargs": "^17.7.2"
+  }
+}
