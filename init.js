@@ -1,44 +1,12 @@
 #!/usr/bin/env node
-import { input } from "@inquirer/prompts";
 import { argv } from "./utils/yargs.js";
+import dataInput from "./utils/input.js";
 import generateJSON from "./utils/generateJson.js";
 import fs from "fs";
 
 let print = argv.p;
 let numObjects = argv.n || 1;
 let save = argv.s;
-let userInput = [];
-
-const sample = {
-  name: "Owen",
-  password: "abc123",
-  email: "test@test.com",
-  number: 26,
-};
-
-async function dataInput() {
-  while (true) {
-    const key = await input({
-      message:
-        userInput.length === 0
-          ? "Enter a key: "
-          : "Enter another key (leave blank to finish): ",
-    });
-
-    if (key === "") {
-      return;
-    }
-
-    const value = await input({
-      message: "Enter a value: ",
-    });
-
-    const parsedValue = isNaN(Number(value)) ? value : Number(value);
-    userInput.push([key, parsedValue]);
-  }
-
-  return userInput;
-}
 
 async function init() {
   if (!print && !save) {
@@ -46,16 +14,19 @@ async function init() {
     return;
   }
 
-  await dataInput();
+  const userInput = await dataInput();
 
-  let jsonData = Array.from({ length: numObjects }, () =>
-    generateJSON(userInput)
-  );
-  jsonData = JSON.stringify(
-    jsonData.length === 1 ? jsonData[0] : jsonData,
-    null,
-    2
-  );
+  let jsonData =
+    numObjects === 1
+      ? Object.fromEntries(userInput)
+      : [
+          Object.fromEntries(userInput),
+          ...Array.from({ length: numObjects - 1 }, () =>
+            generateJSON(userInput)
+          ),
+        ];
+
+  jsonData = JSON.stringify(jsonData, null, 2);
 
   if (print) {
     console.log(jsonData);
@@ -67,7 +38,7 @@ async function init() {
         console.error("Error saving JSON file:", err);
         return;
       }
-      console.log("File saved successfully.");
+      console.log("JSON file saved successfully.");
     });
   }
 }
