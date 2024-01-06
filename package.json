@@ -1,21 +1,25 @@
 {
   "name": "ez-json",
   "version": "1.0.0",
-  "description": "",
+  "description": "Quickly and easily generate JSON files anywhere using the CLI",
   "main": "init.js",
   "type": "module",
   "bin": {
     "json": "./init.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc -w"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "JSON",
+    "generator",
+    "cli",
+    "tools"
+  ],
+  "author": "nephh",
+  "license": "Apache-2.0",
   "dependencies": {
     "@inquirer/prompts": "^3.3.0",
-    "json-generator": "file:/home/neph/personal/ez-json/ez-json-1.0.0.tgz",
     "yargs": "^17.7.2"
   }
 }
