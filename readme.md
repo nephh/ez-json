@@ -85,4 +85,4 @@ Contributions are welcome. Please submit a pull request or create an issue to pr
 
 ## License
 
-This project is licensed under the ISC license.
+This project is licensed under the Apache 2.0 license.
