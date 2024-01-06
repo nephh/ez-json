@@ -8,9 +8,16 @@ let print = argv.p;
 let numObjects = argv.n || 1;
 let save = argv.s;
 
+const ascii = `
+░█▀▀░▀▀█░░░░░▀▀█░█▀▀░█▀█░█▀█
+░█▀▀░▄▀░░▄▄▄░░░█░▀▀█░█░█░█░█
+░▀▀▀░▀▀▀░░░░░▀▀░░▀▀▀░▀▀▀░▀░▀
+\n`;
+
 async function init() {
+  console.log(ascii);
   if (!print && !save) {
-    console.log("You must enter at least one valid flag.");
+    console.log("You must enter at least one valid flag!");
     return;
   }
 

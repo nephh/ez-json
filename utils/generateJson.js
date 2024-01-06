@@ -1,37 +1,50 @@
-function randString(length) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    result += characters.charAt(randomIndex);
-  }
-  return result;
-}
+import { uniqueNamesGenerator, names } from "unique-names-generator";
+import { randNumber, randString, randDictionaries } from "./randomGenerator.js";
 
-function randNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function handleString(key, value) {
+  const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+  if (key === "name") {
+    return [key, uniqueNamesGenerator({ dictionaries: [names] })];
+  } else if (key === "username") {
+    return [
+      key,
+      uniqueNamesGenerator({
+        dictionaries: randDictionaries(),
+        length: 2,
+        separator: "",
+        style: "capital",
+      }),
+    ];
+  } else if (key === "address") {
+    return [
+      key,
+      `${randNumber(10, 4999)} ${uniqueNamesGenerator({
+        dictionaries: [names],
+      })} St.`,
+    ];
+  } else if (regex.test(value)) {
+    return [
+      key,
+      `${uniqueNamesGenerator({
+        dictionaries: randDictionaries(),
+        length: 2,
+        separator: "-",
+        style: "lowerCase",
+      })}@${randString(randNumber(2, 5))}.com`,
+    ];
+  } else {
+    return [key, randString(randNumber(4, 12))];
+  }
 }
 
 export default function generateJSON(template) {
-  const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-
   return Object.fromEntries(
     template.map(([key, value]) => {
       switch (typeof value) {
         case "number":
-          return [key, randNumber(1, 100)];
+          return [key, randNumber(1, 999)];
         case "string":
-          if (regex.test(value)) {
-            return [
-              key,
-              `${randString(randNumber(4, 8))}@${randString(
-                randNumber(2, 5)
-              )}.com`,
-            ];
-          } else {
-            return [key, randString(randNumber(4, 12))];
-          }
+          return handleString(key, value);
         default:
           return [key, value];
       }
