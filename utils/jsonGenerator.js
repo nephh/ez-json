@@ -1,6 +1,18 @@
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { randNumber, randString, randDictionaries } from "./randomGenerator.js";
 
+function handleNum(key, value) {
+  // Making sure that the number we generate is somewhat similar to the
+  // user's input.
+  const numberOfDigits = Math.max(
+    Math.floor(Math.log10(Math.abs(value))) + 1,
+    1
+  );
+  const lowerBound = 10 ** (numberOfDigits - 1);
+  const upperBound = 10 ** numberOfDigits - 1;
+  return [key, randNumber(lowerBound, upperBound)];
+}
+
 function handleString(key, value) {
   const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   const firstNames = ["firstname", "first-name", "first_name"];
@@ -58,7 +70,7 @@ export default function generateJSON(template) {
     template.map(([key, value]) => {
       switch (typeof value) {
         case "number":
-          return [key, randNumber(1, 999)];
+          return handleNum(key, value);
         case "string":
           return handleString(key, value);
         default:

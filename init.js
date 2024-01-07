@@ -5,7 +5,7 @@ import generateJSON from "./utils/jsonGenerator.js";
 import fs from "fs";
 
 let print = argv.p;
-let numObjects = argv._[0] || 1;
+let numObjects = argv._.find((value) => typeof value === "number") || 1;
 let save = argv.s;
 
 const ascii = `
