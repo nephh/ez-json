@@ -1,6 +1,6 @@
 {
   "name": "ez-json",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Quickly and easily generate JSON files anywhere using the CLI",
   "main": "init.js",
   "type": "module",
@@ -11,10 +11,11 @@
     "watch": "tsc -w"
   },
   "keywords": [
-    "JSON",
+    "json",
     "generator",
     "cli",
-    "tools"
+    "tools",
+    "data"
   ],
   "author": "nephh",
   "license": "Apache-2.0",
