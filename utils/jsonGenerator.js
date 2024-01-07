@@ -9,6 +9,7 @@ function handleString(key, value) {
   if (key === "name") {
     return [
       key,
+      // First and last name
       `${uniqueNamesGenerator({
         dictionaries: [names],
       })} ${uniqueNamesGenerator({ dictionaries: [names] })}`,

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { argv } from "./utils/yargs.js";
 import dataInput from "./utils/input.js";
-import generateJSON from "./utils/json.js";
+import generateJSON from "./utils/jsonGenerator.js";
 import fs from "fs";
 
 let print = argv.p;

@@ -71,13 +71,13 @@ Remember, you can combine options to tailor the command to your needs.
 
 As of right now, the string generation is very barebones and random. Very soon™️ more specific keys will be checked, so that more accurate values will be generated from a set dictionary based on the key.
 
-I also want to make this extendable, which means allowing users to specify custom regex for more explicit values. User defined dictionaries used for specific keys, existing JSON file importing, all these things are future ideas focused on allowing the user to customize their JSON generation to their hearts content.
+I also want to make this extendable, which means allowing users to specify a custom regex or a predefined set of words for more explicit values. User defined dictionaries used for specific keys, existing JSON file importing, all these things are future ideas focused on allowing the user to customize their JSON generation to their hearts content.
 
 Whether these customizations will become extra arguments in the CLI, or a config file is still up for debate. A config would probably be best for more in-depth custom values.
 
 I plan on rewriting this in Go, but I first need to learn the ins and outs of the language, so this will live on node for now.
 
-Once this is an official npm package, installing with the --global flag will allow you to generate JSON in any directory, without needing another dev dependency.
+Once this is an official npm package, installing with the --global flag will allow you to generate JSON in any directory.
 
 ## Project Structure
 
