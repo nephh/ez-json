@@ -27,6 +27,8 @@ cd ez-json
 npm install
 ```
 
+**As of right now, EZ JSON must be cloned and ran like any normal JavaScript file. Very soon it will be an NPM package that can be globally installed, so you can generate your data from anywhere.**
+
 ## Usage
 
 EZ-JSON allows you to generate JSON objects based on key-value pairs that you define. This tool takes care of the JSON formatting for you, so you can focus on the data you want to generate.
