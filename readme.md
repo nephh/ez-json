@@ -69,7 +69,7 @@ Remember, you can combine options to tailor the command to your needs.
 
 ## Future Features
 
-As of right now, the string generation is very barebones and random. Very soon™️ more specific keys will be checked, so that more accurate values will be generated from a set dictionary based on the key.
+As of right now, the string generation is very barebones and random. Very soon™️ more specific keys will be checked, so that more accurate values will be generated from a set dictionary based on the keys. The specificity of the values generated is not very deep at the moment.
 
 I also want to make this extendable, which means allowing users to specify a custom regex or a predefined set of words for more explicit values. User defined dictionaries used for specific keys, existing JSON file importing, all these things are future ideas focused on allowing the user to customize their JSON generation to their hearts content.
 
