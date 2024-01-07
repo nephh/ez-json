@@ -3,7 +3,7 @@ import { input } from "@inquirer/prompts";
 export default async function dataInput() {
   const arr = [];
   while (true) {
-    const key = await input({
+    let key = await input({
       message:
         arr.length === 0
           ? "Enter a key: "
@@ -14,11 +14,14 @@ export default async function dataInput() {
       return arr;
     }
 
-    const value = await input({
+    let value = await input({
       message: "Enter a value: ",
     });
 
+    key = typeof key === "string" ? key.trim() : key;
+    value = typeof value === "string" ? value.trim() : value;
+
     const parsedValue = isNaN(Number(value)) ? value : Number(value);
-    arr.push([key.trim().toLowerCase(), parsedValue.trim()]);
+    arr.push([key, parsedValue]);
   }
 }
