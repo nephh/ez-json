@@ -1,10 +1,13 @@
+<div align="center">
+
 # EZ-JSON CLI
 
 ![GitHub License](https://img.shields.io/github/license/nephh/ez-json?style=for-the-badge&color=blue)
 
-## Description
 
 EZ-JSON is a command-line interface (CLI) tool for generating JSON data based on user input. It's useful for quickly creating mock data for testing or development purposes. Whether you need to quickly test a post endpoint, or you need a huge seed file, EZ-JSON makes it simple and easy.
+
+</div>
 
 ## Table of Contents
 
