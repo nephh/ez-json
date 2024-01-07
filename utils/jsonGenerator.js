@@ -3,31 +3,34 @@ import { randNumber, randString, randDictionaries } from "./randomGenerator.js";
 
 function handleNum(key, value) {
   // Making sure that the number we generate is somewhat similar to the
-  // user's input.
+  // user's input, i.e. the same amount of digits
   const numberOfDigits = Math.max(
     Math.floor(Math.log10(Math.abs(value))) + 1,
     1
   );
-  const lowerBound = 10 ** (numberOfDigits - 1);
-  const upperBound = 10 ** numberOfDigits - 1;
-  return [key, randNumber(lowerBound, upperBound)];
+  const min = 10 ** (numberOfDigits - 1);
+  const max = 10 ** numberOfDigits - 1;
+  return [key, randNumber(min, max)];
 }
 
 function handleString(key, value) {
   const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-  const firstNames = ["firstname", "first-name", "first_name"];
-  const lastNames = ["lastname", "last-name", "last_name"];
+  const parsedKey = key.toLowerCase().replace(/[\s\-_]/g, "");
 
-  if (key === "name") {
-    return [
+  const handlers = {
+    name: () => [
       key,
-      // First and last name
       `${uniqueNamesGenerator({
         dictionaries: [names],
       })} ${uniqueNamesGenerator({ dictionaries: [names] })}`,
-    ];
-  } else if (key === "username") {
-    return [
+    ],
+    fullname: () => [
+      key,
+      `${uniqueNamesGenerator({
+        dictionaries: [names],
+      })} ${uniqueNamesGenerator({ dictionaries: [names] })}`,
+    ],
+    username: () => [
       key,
       uniqueNamesGenerator({
         dictionaries: randDictionaries(),
@@ -35,21 +38,19 @@ function handleString(key, value) {
         separator: "",
         style: "capital",
       }),
-    ];
-  } else if (key === "address") {
-    return [
+    ],
+    address: () => [
       key,
       `${randNumber(10, 4999)} ${uniqueNamesGenerator({
         dictionaries: [names],
       })} St.`,
-    ];
-  } else if (firstNames.includes(key) || lastNames.includes(key)) {
-    return [
-      key,
-      uniqueNamesGenerator({
-        dictionaries: [names],
-      }),
-    ];
+    ],
+    firstname: () => [key, uniqueNamesGenerator({ dictionaries: [names] })],
+    lastname: () => [key, uniqueNamesGenerator({ dictionaries: [names] })],
+  };
+
+  if (handlers[parsedKey]) {
+    return handlers[parsedKey]();
   } else if (regex.test(value)) {
     return [
       key,
