@@ -3,7 +3,17 @@ import { hideBin } from "yargs/helpers";
 
 export const argv = yargs(hideBin(process.argv))
   .scriptName("ez-json")
-  .usage("Usage: json [options]\n\nEZ-JSON: A JSON generator tool")
+  .usage(
+    "EZ-JSON: A JSON generator tool\n\nUsage: json [options] <number of objects>"
+  )
+  .example("json -ps 5", "Print and save 5 objects to a JSON file.")
+  .check((argv) => {
+    if (argv.p || argv.s) {
+      return true;
+    } else {
+      throw new Error("At least one flag, -p or -s, must be provided.");
+    }
+  })
   .options({
     p: {
       alias: "print",
@@ -14,12 +24,6 @@ export const argv = yargs(hideBin(process.argv))
       alias: "save",
       describe: "Save JSON to a file.",
       type: "boolean",
-    },
-    n: {
-      alias: "number",
-      describe:
-        "Enter the number of objects you would like generated in the file after this flag.",
-      type: "number",
     },
   })
   .alias({

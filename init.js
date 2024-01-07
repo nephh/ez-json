@@ -5,7 +5,7 @@ import generateJSON from "./utils/generateJson.js";
 import fs from "fs";
 
 let print = argv.p;
-let numObjects = argv.n || 1;
+let numObjects = argv._[0] || 1;
 let save = argv.s;
 
 const ascii = `
@@ -24,14 +24,14 @@ async function init() {
   const userInput = await dataInput();
 
   let jsonData =
-    numObjects === 1
-      ? Object.fromEntries(userInput)
-      : [
+    numObjects > 1
+      ? [
           Object.fromEntries(userInput),
           ...Array.from({ length: numObjects - 1 }, () =>
             generateJSON(userInput)
           ),
-        ];
+        ]
+      : Object.fromEntries(userInput);
 
   jsonData = JSON.stringify(jsonData, null, 2);
 

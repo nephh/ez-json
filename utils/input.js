@@ -19,6 +19,6 @@ export default async function dataInput() {
     });
 
     const parsedValue = isNaN(Number(value)) ? value : Number(value);
-    arr.push([key, parsedValue]);
+    arr.push([key.trim().toLowerCase(), parsedValue.trim()]);
   }
 }
