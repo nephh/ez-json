@@ -1,17 +1,15 @@
 <div align="center">
 
-# EZ-JSON CLI
+<img src="./assets/ezjson.png" alt="ez-json logo" width="300"/>
 
-![GitHub License](https://img.shields.io/github/license/nephh/ez-json?style=for-the-badge&color=blue)
+[![GitHub License](https://img.shields.io/github/license/nephh/ez-json?style=for-the-badge&color=blue)](https://www.apache.org/licenses/LICENSE-2.0)
 
-
-EZ-JSON is a command-line interface (CLI) tool for generating JSON data based on user input. It's useful for quickly creating mock data for testing or development purposes. Whether you need to quickly test a post endpoint, or you need a huge seed file, EZ-JSON makes it simple and easy.
+EZ JSON is a command-line interface (CLI) tool for generating JSON data based on user input. It's useful for quickly creating mock data for testing or development purposes. Whether you need to quickly test a post endpoint, or you need a huge seed file, EZ JSON makes it easy, and most importantly, *fast*.
 
 </div>
 
 ## Table of Contents
 
-- [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Code Structure](#code-structure)
@@ -22,7 +20,7 @@ EZ-JSON is a command-line interface (CLI) tool for generating JSON data based on
 
 To install the tool, you'll need to have Node.js installed on your computer. Once you have Node.js installed, you can install the tool by cloning the repository and installing its dependencies:
 
-```
+``` bash
 mkdir ez-json
 git clone https://github.com/nephh/ez-json
 cd ez-json
@@ -31,13 +29,15 @@ npm install
 
 ## Usage
 
-The tool uses a sample JSON object to generate data. The sample object is defined by the user input.
+EZ-JSON allows you to generate JSON objects based on key-value pairs that you define. This tool takes care of the JSON formatting for you, so you can focus on the data you want to generate.
 
-You can run the tool with the following command:
+To use EZ-JSON, run the following command:
 
+``` bash
+node init.js [options] <number of objects>
 ```
-node init.js [options]
-```
+
+In this command, `<number of objects>` represents the number of JSON objects you want to generate. If you don't specify a number, EZ-JSON will generate a single object by default.
 
 The available options are:
 
@@ -45,44 +45,59 @@ The available options are:
 
 - `-s, --save`: Save the generated JSON to a file named "ez-json.json".
 
-- `-n, --number`: Enter the number of objects you would like generated in the file after this flag. This defaults to 1 if not specified.
-
 - `-h, --help`: The help menu.
 
 - `-v, --version`: See what version of EZ-JSON you are running.
 
-For example, to quickly generate one object and print it out for copying, you would use:
+### Examples
 
-```
-node init.js -p
-```
+Here are a few examples of how to use EZ-JSON:
 
-Just like any other CLI tool, you can combine flags to simplify the commands.
-The following will generate 5 objects, print them out, and save them to a file:
+- To generate a single JSON object and print it to the console, run:
 
-```
-node init.js -nps 5
-```
+    ``` bash
+    node init.js -p
+    ```
+
+- To generate 5 JSON objects, print them to the console, and save them to a file, run:
+
+    ``` bash
+    node init.js -ps 5
+    ```
+
+Remember, you can combine options to tailor the command to your needs.
 
 ## Future Features
 
-As of right now, the string generation is very barebones and random. Very soon™️ specific keys will be checked, and values will be generated from a set dictionary based on the key.
+As of right now, the string generation is very barebones and random. Very soon™️ more specific keys will be checked, so that more accurate values will be generated from a set dictionary based on the key.
 
-I also want to make this extendable, which means allowing users to specify regexs for more explicit values. User defined dictionaries used for specific keys, existing JSON file importing, all these things are future ideas focused on allowing the user to customize their JSON generation to their hearts content.
+I also want to make this extendable, which means allowing users to specify custom regex for more explicit values. User defined dictionaries used for specific keys, existing JSON file importing, all these things are future ideas focused on allowing the user to customize their JSON generation to their hearts content.
+
+Whether these customizations will become extra arguments in the CLI, or a config file is still up for debate. A config would probably be best for more in-depth custom values.
 
 I plan on rewriting this in Go, but I first need to learn the ins and outs of the language, so this will live on node for now.
 
 Once this is an official npm package, installing with the --global flag will allow you to generate JSON in any directory, without needing another dev dependency.
 
-## Code Structure
+## Project Structure
 
-The main entry point of the application is the init.js file. This file imports necessary modules and defines the main function that handles user input and JSON generation.
+- `init.js`: The main script that runs the JSON generator.
 
-The utils/yargs.js file sets up the command-line arguments using the yargs library.
+- `utils/`: Contains utility modules for the project.
 
-The utils/input.js file handles user input.
+  - `input.js`: Handles input from the command line.
 
-The utils/generateJson.js file contains the logic for generating random JSON data based on the user input.
+  - `json.js`: Contains functions for generating JSON data.
+
+  - `randomGenerator.js`: Contains functions for generating random data.
+
+  - `yargs.js`: Handles command line arguments using yargs.
+
+## Thank You
+
+There are many JSON file generators out there that have very in-depth generation, but they don't capture the simplicity and speed that I hope to bring with EZ JSON.
+
+Thank you for checking it out, and being here along for the ride ^-^
 
 ## Contributing
 
@@ -90,4 +105,4 @@ Contributions are welcome. Please submit a pull request or create an issue to pr
 
 ## License
 
-This project is licensed under the Apache 2.0 license.
+This project is licensed under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
