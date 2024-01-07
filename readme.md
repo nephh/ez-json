@@ -87,7 +87,7 @@ Once this is an official npm package, installing with the --global flag will all
 
   - `input.js`: Handles input from the command line.
 
-  - `json.js`: Contains functions for generating JSON data.
+  - `jsonGenerator.js`: Contains functions for generating JSON data.
 
   - `randomGenerator.js`: Contains functions for generating random data.
 
