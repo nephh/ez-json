@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="![Alt text](image-1.png)" alt="ez-json logo" width="300"/>
+<img src="./assets/ezjson.png" alt="ez-json logo" width="300"/>
 
 [![GitHub License](https://img.shields.io/github/license/nephh/ez-json?style=for-the-badge&color=blue)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -36,14 +36,12 @@ EZ-JSON allows you to generate JSON objects based on key-value pairs that you de
 To use EZ-JSON, run the following command:
 
 ```bash
-node init.js [options] <number of objects>
+node init.js [options] <objects>
 ```
 
-In this command, `<number of objects>` represents the number of JSON objects you want to generate. If you don't specify a number, EZ-JSON will generate a single object by default.
+In this command, `<objects>` represents the number of JSON objects you want to generate. If you don't specify a number, EZ-JSON will generate a single object by default.
 
 The available options are:
-
-- `-p, --print`: Print the generated JSON file to the console.
 
 - `-s, --save`: Save the generated JSON to a file named "ez-json.json".
 
@@ -58,18 +56,20 @@ Here are a few examples of how to use EZ-JSON:
 - To generate a single JSON object and print it to the console, run:
 
   ```bash
-  node init.js -p
+  node init.js
   ```
 
 - To generate 5 JSON objects, print them to the console, and save them to a file, run:
 
   ```bash
-  node init.js -ps 5
+  node init.js 5 -s
   ```
 
 Remember, you can combine options to tailor the command to your needs.
 
-!["ezjson example gif"](./assets/ezjson.gif)
+<div align="center">
+  <img  src="./assets/ez-json.gif" alt="ez-json example" width="500"/>
+</div>
 
 ## Future Features
 
