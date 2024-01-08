@@ -4,7 +4,6 @@ import dataInput from "./utils/input.js";
 import generateJSON from "./utils/jsonGenerator.js";
 import fs from "fs";
 
-// let numObjects = argv._.find((value) => typeof value === "number") || 1;
 const numObjects = argv.objects;
 const save = argv.s;
 

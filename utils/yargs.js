@@ -12,13 +12,6 @@ export const argv = yargs(hideBin(process.argv))
   .scriptName("ez-json")
   .usage("EZ-JSON: A JSON generator tool\n\nCommands: json <objects> [options]")
   .example("json 5 -s", "Generate 5 objects and save them to a JSON file.")
-  // .check((argv) => {
-  //   if (argv.p || argv.s) {
-  //     return true;
-  //   } else {
-  //     throw new Error("At least one flag, -p or -s, must be provided.");
-  //   }
-  // })
   .options({
     s: {
       alias: "save",
