@@ -62,13 +62,13 @@ Here are a few examples of how to use EZ-JSON:
 - To generate 5 JSON objects, print them to the console, and save them to a file, run:
 
   ```bash
-  node init.js 5 -s
+  node init.js -s 5
   ```
 
 Remember, you can combine options to tailor the command to your needs.
 
 <div align="center">
-  <img  src="./assets/ez-json.gif" alt="ez-json example" width="500"/>
+  <img  src="./assets/ezjson.gif" alt="ez-json example" width="500"/>
 </div>
 
 ## Future Features

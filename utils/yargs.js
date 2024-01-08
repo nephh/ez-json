@@ -2,16 +2,27 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 export const argv = yargs(hideBin(process.argv))
-  .command("$0 [objects]", "generate some json", (yargs) => {
-    yargs.positional("objects", {
-      describe: "The amount of objects you want generated. Defaults to 1.",
-      type: "number",
-      default: 1,
-    });
+  .command({
+    command: "$0 [objects]",
+    describe: "Generate some JSON",
+    builder: {
+      objects: {
+        describe: `Number of objects to be generated. The first number 
+          given as an argument will be used.`,
+        type: "number",
+        alias: "o",
+      },
+    },
+    handler: (argv) => {
+      console.log("Generating JSON...");
+    },
   })
   .scriptName("ez-json")
-  .usage("EZ-JSON: A JSON generator tool\n\nCommands: json <objects> [options]")
-  .example("json 5 -s", "Generate 5 objects and save them to a JSON file.")
+  .usage(
+    "EZ JSON: A JSON generator tool\n\nCommands:\n" +
+      "  ./init.js [options] <objects>"
+  )
+  .example("json -s 5", "Generate 5 objects and save them to a JSON file.")
   .options({
     s: {
       alias: "save",
