@@ -4,9 +4,9 @@ import dataInput from "./utils/input.js";
 import generateJSON from "./utils/jsonGenerator.js";
 import fs from "fs";
 
-let print = argv.p;
-let numObjects = argv._.find((value) => typeof value === "number") || 1;
-let save = argv.s;
+// let numObjects = argv._.find((value) => typeof value === "number") || 1;
+const numObjects = argv.objects;
+const save = argv.s;
 
 const ascii = `
 ░█▀▀░▀▀█░░░░░▀▀█░█▀▀░█▀█░█▀█
@@ -16,10 +16,6 @@ const ascii = `
 
 async function init() {
   console.log(ascii);
-  if (!print && !save) {
-    console.log("You must enter at least one valid flag!");
-    return;
-  }
 
   const userInput = await dataInput();
 
@@ -28,16 +24,14 @@ async function init() {
       ? [
           Object.fromEntries(userInput),
           ...Array.from({ length: numObjects - 1 }, () =>
-            generateJSON(userInput)
+            generateJSON(userInput),
           ),
         ]
       : Object.fromEntries(userInput);
 
   jsonData = JSON.stringify(jsonData, null, 2);
 
-  if (print) {
-    console.log(jsonData);
-  }
+  console.log(jsonData);
 
   if (save) {
     fs.writeFile("ez-json.json", jsonData, (err) => {

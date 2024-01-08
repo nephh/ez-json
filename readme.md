@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/ezjson.png" alt="ez-json logo" width="300"/>
+<img src="![Alt text](image-1.png)" alt="ez-json logo" width="300"/>
 
 [![GitHub License](https://img.shields.io/github/license/nephh/ez-json?style=for-the-badge&color=blue)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -69,7 +69,7 @@ Here are a few examples of how to use EZ-JSON:
 
 Remember, you can combine options to tailor the command to your needs.
 
-<script async id="asciicast-569727" src="https://asciinema.org/a/569727.js"></script>
+!["ezjson example gif"](./assets/ezjson.gif)
 
 ## Future Features
 
