@@ -7,15 +7,7 @@ import fs from "fs";
 const numObjects = argv.objects;
 const save = argv.s;
 
-const ascii = `
-░█▀▀░▀▀█░░░▀▀█░█▀▀░█▀█░█▀█
-░█▀▀░▄▀░░░░░░█░▀▀█░█░█░█░█
-░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░▀▀▀░▀░▀
-\n`;
-
 async function init() {
-  console.log(ascii);
-
   const userInput = await dataInput();
 
   let jsonData =
@@ -23,7 +15,7 @@ async function init() {
       ? [
           Object.fromEntries(userInput),
           ...Array.from({ length: numObjects - 1 }, () =>
-            generateJSON(userInput),
+            generateJSON(userInput)
           ),
         ]
       : Object.fromEntries(userInput);

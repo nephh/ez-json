@@ -1,6 +1,12 @@
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
+const ascii = `
+░█▀▀░▀▀█░░░▀▀█░█▀▀░█▀█░█▀█
+░█▀▀░▄▀░░░░░░█░▀▀█░█░█░█░█
+░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░▀▀▀░▀░▀
+\n`;
+
 export const argv = yargs(hideBin(process.argv))
   .command({
     command: "$0 [objects]",
@@ -14,7 +20,7 @@ export const argv = yargs(hideBin(process.argv))
       },
     },
     handler: (argv) => {
-      console.log("Generating JSON...");
+      console.log(ascii);
     },
   })
   .scriptName("ez-json")
