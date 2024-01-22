@@ -4,7 +4,7 @@
 
 [![GitHub License](https://img.shields.io/github/license/nephh/ez-json?style=for-the-badge&color=blue)](https://www.apache.org/licenses/LICENSE-2.0)
 
-EZ JSON is a CLI tool to generate JSON data based on user input. The goal is to eliminate the tedious task of manually writing out JSON data and seed files. It's useful for quickly creating mock data for testing or development purposes. Whether you need to quickly test an endpoint, or you need a huge seed file, EZ JSON makes it easy, and most importantly, _fast_.
+EZ JSON is a CLI tool that generates JSON data based on user input. The goal is to eliminate the tedious task of manually writing out JSON data and seed files, to quickly create mock data for testing or development purposes. Whether you need to quickly test an endpoint, or you need a huge seed file, EZ JSON makes it easy, and most importantly, _fast_.
 
 </div>
 
