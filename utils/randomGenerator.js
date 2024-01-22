@@ -17,8 +17,5 @@ export function randString(length) {
 
 export function randDictionaries() {
   const dictionaries = [animals, colors, adjectives];
-  return [
-    dictionaries[randNumber(0, dictionaries.length - 1)],
-    dictionaries[randNumber(0, dictionaries.length - 1)],
-  ];
+  return [...dictionaries];
 }

@@ -19,9 +19,8 @@ export default async function dataInput() {
     });
 
     key = typeof key === "string" ? key.trim() : key;
-    value = typeof value === "string" ? value.trim() : value;
 
-    const parsedValue = isNaN(Number(value)) ? value : Number(value);
+    const parsedValue = isNaN(value) ? value.trim() : Number(value);
     arr.push([key, parsedValue]);
   }
 }
