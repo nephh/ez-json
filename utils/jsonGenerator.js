@@ -14,8 +14,10 @@ function handleNum(key, value) {
 }
 
 function handleString(key, value) {
-  const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   const parsedKey = key.toLowerCase().replace(/[\s\-_]/g, "");
+
+  const emailExp = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+  const phoneExp = /^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$/;
 
   const handlers = {
     name: () => [
@@ -51,7 +53,7 @@ function handleString(key, value) {
 
   if (handlers[parsedKey]) {
     return handlers[parsedKey]();
-  } else if (regex.test(value)) {
+  } else if (emailExp.test(value)) {
     return [
       key,
       `${uniqueNamesGenerator({
@@ -61,6 +63,9 @@ function handleString(key, value) {
         style: "lowerCase",
       })}@${randString(randNumber(2, 5))}.com`,
     ];
+  } else if (phoneExp.test(value)) {
+    const phone = `Phone Number Generated Here`
+    return [key, phone];
   } else {
     return [key, randString(randNumber(4, 12))];
   }
