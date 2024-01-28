@@ -19,21 +19,29 @@ export const argv = yargs(hideBin(process.argv))
         alias: "o",
       },
     },
-    handler: (argv) => {
+    handler: () => {
       console.log(ascii);
     },
   })
   .scriptName("ez-json")
   .usage(
     "EZ JSON: A JSON generator tool\n\nCommands:\n" +
-      "  ./init.js [options] <objects>"
+      "  ./init.js <objects> [options]"
   )
-  .example("json -s 5", "Generate 5 objects and save them to a JSON file.")
+  .example(
+    "json 4 -sf ./data",
+    `Generate 5 objects and save them to a JSON file in "./data".`
+  )
   .options({
     s: {
       alias: "save",
-      describe: "Save JSON to a file.",
+      describe: "Save JSON to a file. Defaults to the current directory.",
       type: "boolean",
+    },
+    f: {
+      alias: "filepath",
+      describe: "Choose a different directory to save the file to.",
+      type: "string",
     },
   })
   .alias({
