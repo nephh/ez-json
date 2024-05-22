@@ -12,12 +12,12 @@ async function init() {
 
   let jsonData =
     numObjects > 1
-      ? [
+      ? await Promise.all([
           Object.fromEntries(userInput),
           ...Array.from({ length: numObjects - 1 }, () =>
             generateJSON(userInput)
           ),
-        ]
+        ])
       : Object.fromEntries(userInput);
 
   jsonData = JSON.stringify(jsonData, null, 2);

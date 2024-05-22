@@ -1,5 +1,6 @@
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { randNumber, randString, randDictionaries } from "./randomGenerator.js";
+import generateValue from "./ai.js";
 
 function handleNum(key, value) {
   // Making sure that the number we generate is somewhat similar to the
@@ -13,11 +14,10 @@ function handleNum(key, value) {
   return [key, randNumber(min, max)];
 }
 
-function handleString(key, value) {
+async function handleString(key, value) {
   const parsedKey = key.toLowerCase().replace(/[\s\-_]/g, "");
 
   const emailExp = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-  const phoneExp = /^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$/;
 
   const handlers = {
     name: () => [
@@ -63,16 +63,15 @@ function handleString(key, value) {
         style: "lowerCase",
       })}@${randString(randNumber(2, 5))}.com`,
     ];
-  } else if (phoneExp.test(value)) {
-    const phone = `Phone Number Generated Here`
-    return [key, phone];
   } else {
-    return [key, randString(randNumber(4, 12))];
+    console.log("Generating value for key:", key);
+    const newValue = await generateValue(key);
+    return [key, newValue];
   }
 }
 
-export default function generateJSON(template) {
-  return Object.fromEntries(
+export default async function generateJSON(template) {
+  const entries = await Promise.all(
     template.map(([key, value]) => {
       switch (typeof value) {
         case "number":
@@ -84,4 +83,6 @@ export default function generateJSON(template) {
       }
     })
   );
+
+  return Object.fromEntries(entries);
 }
