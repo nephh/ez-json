@@ -1,6 +1,8 @@
 import { input } from "@inquirer/prompts";
+import { argv } from "./yargs";
+import fs from "fs";
 
-export default async function dataInput() {
+export async function dataInput() {
   const arr: Array<[string, string | number]> = [];
   while (true) {
     let key = await input({
@@ -23,4 +25,18 @@ export default async function dataInput() {
 
     arr.push([key, parsedValue]);
   }
+}
+
+export async function fileInput() {
+  if (!argv.file) {
+    return;
+  }
+
+  const fileData = fs.readFileSync(argv.file, "utf8");
+  const match = fileData.match(/{([^}]*)}/);
+  const extractedText = match ? `{${match[1]}}` : "";
+  const keyValueArray: Array<[string, string | number]> = Object.entries(
+    JSON.parse(extractedText)
+  );
+  return keyValueArray;
 }

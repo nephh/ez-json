@@ -32,10 +32,15 @@ export const argv = yargs(hideBin(process.argv))
       type: "number",
       default: 1,
     },
+    file: {
+      describe: "The file path of a JSON file to use as a template.",
+      type: "string",
+    },
   })
   .alias({
     s: "save",
     o: "objects",
+    f: "file",
     h: "help",
     v: "version",
   })

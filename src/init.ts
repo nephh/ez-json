@@ -1,21 +1,27 @@
 #!/usr/bin/env node
 import { argv } from "./utils/yargs";
-import dataInput from "./utils/input";
+import { dataInput, fileInput } from "./utils/input";
 import generateJSON from "./utils/json";
 import fs from "fs";
 
-const numObjects = argv.objects;
-const save = argv.save;
-
 async function init() {
+  const numObjects = argv.objects;
+  const save = argv.save;
+
+  const fileData = await fileInput();
+  console.log("File Data: ", fileData);
+
   const userInput = await dataInput();
+  console.log("User Input: ", userInput);
 
   const jsonData =
     numObjects > 1
       ? await Promise.all([
-          Object.fromEntries(userInput),
+          fileData
+            ? Object.fromEntries(fileData)
+            : Object.fromEntries(userInput),
           ...Array.from({ length: numObjects - 1 }, () =>
-            generateJSON(userInput)
+            fileData ? generateJSON(fileData) : generateJSON(userInput)
           ),
         ])
       : Object.fromEntries(userInput);
