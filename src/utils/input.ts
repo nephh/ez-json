@@ -1,7 +1,7 @@
 import { input } from "@inquirer/prompts";
 
 export default async function dataInput() {
-  const arr = [];
+  const arr: Array<[string, string | number]> = [];
   while (true) {
     let key = await input({
       message:
@@ -18,9 +18,9 @@ export default async function dataInput() {
       message: "Enter a value: ",
     });
 
-    key = typeof key === "string" ? key.trim() : key;
+    key = key.trim();
+    const parsedValue = isNaN(Number(value)) ? value.trim() : Number(value);
 
-    const parsedValue = isNaN(value) ? value.trim() : Number(value);
     arr.push([key, parsedValue]);
   }
 }

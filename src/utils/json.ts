@@ -1,8 +1,8 @@
 import { uniqueNamesGenerator, names } from "unique-names-generator";
-import { randNumber, randString, randDictionaries } from "./randomGenerator.js";
-import generateValue from "./ai.js";
+import { randNumber, randString, randDictionaries } from "./random";
+import generateValue from "./ai";
 
-function handleNum(key, value) {
+function handleNum(key: string, value: number) {
   // Making sure that the number we generate is somewhat similar to the
   // user's input, i.e. the same amount of digits
   const numberOfDigits = Math.max(
@@ -14,24 +14,18 @@ function handleNum(key, value) {
   return [key, randNumber(min, max)];
 }
 
-async function handleString(key, value) {
+async function handleString(key: string, value: string) {
   const parsedKey = key.toLowerCase().replace(/[\s\-_]/g, "");
 
   const emailExp = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
+  function generateName() {
+    return uniqueNamesGenerator({ dictionaries: [names] });
+  }
+
   const handlers = {
-    name: () => [
-      key,
-      `${uniqueNamesGenerator({
-        dictionaries: [names],
-      })} ${uniqueNamesGenerator({ dictionaries: [names] })}`,
-    ],
-    fullname: () => [
-      key,
-      `${uniqueNamesGenerator({
-        dictionaries: [names],
-      })} ${uniqueNamesGenerator({ dictionaries: [names] })}`,
-    ],
+    name: () => [key, `${generateName()} ${generateName()}`],
+    fullname: () => [key, `${generateName()} ${generateName()}`],
     username: () => [
       key,
       uniqueNamesGenerator({
@@ -41,18 +35,15 @@ async function handleString(key, value) {
         style: "capital",
       }),
     ],
-    address: () => [
-      key,
-      `${randNumber(10, 4999)} ${uniqueNamesGenerator({
-        dictionaries: [names],
-      })} St.`,
-    ],
-    firstname: () => [key, uniqueNamesGenerator({ dictionaries: [names] })],
-    lastname: () => [key, uniqueNamesGenerator({ dictionaries: [names] })],
+    address: () => [key, `${randNumber(10, 4999)} ${generateName()} St.`],
+    firstname: () => [key, generateName()],
+    lastname: () => [key, generateName()],
   };
 
-  if (handlers[parsedKey]) {
-    return handlers[parsedKey]();
+  const handler = handlers[parsedKey as keyof typeof handlers];
+
+  if (handler) {
+    return handler();
   } else if (emailExp.test(value)) {
     return [
       key,
@@ -64,13 +55,14 @@ async function handleString(key, value) {
       })}@${randString(randNumber(2, 5))}.com`,
     ];
   } else {
-    console.log("Generating value for key:", key);
     const newValue = await generateValue(key);
     return [key, newValue];
   }
 }
 
-export default async function generateJSON(template) {
+export default async function generateJSON(
+  template: Array<[string, string | number]>
+) {
   const entries = await Promise.all(
     template.map(([key, value]) => {
       switch (typeof value) {

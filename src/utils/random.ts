@@ -1,10 +1,10 @@
 import { animals, colors, adjectives } from "unique-names-generator";
 
-export function randNumber(min, max) {
+export function randNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function randString(length) {
+export function randString(length: number) {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";

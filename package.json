@@ -25,5 +25,9 @@
     "dotenv": "^16.4.5",
     "unique-names-generator": "^4.7.1",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.32",
+    "typescript": "^5.4.5"
   }
 }
