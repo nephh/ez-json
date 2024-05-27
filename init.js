@@ -6,6 +6,7 @@ import fs from "fs";
 
 const numObjects = argv.objects;
 const save = argv.s;
+const filepath = argv.filepath;
 
 async function init() {
   const userInput = await dataInput();
@@ -24,7 +25,18 @@ async function init() {
 
   console.log(jsonData);
 
-  if (save) {
+  if (filepath) {
+    if (!fs.existsSync(filepath)) {
+      fs.mkdirSync(filepath, { recursive: true });
+    }
+    fs.writeFile(`${filepath}/ez-json.json`, jsonData, (err) => {
+      if (err) {
+        console.error("Error saving JSON file:", err);
+        return;
+      }
+      console.log(`JSON file saved successfully to "${filepath}".`);
+    });
+  } else if (save) {
     fs.writeFile("ez-json.json", jsonData, (err) => {
       if (err) {
         console.error("Error saving JSON file:", err);
@@ -32,6 +44,8 @@ async function init() {
       }
       console.log("JSON file saved successfully.");
     });
+  } else {
+    console.log(argv.s);
   }
 }
 
