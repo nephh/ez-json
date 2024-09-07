@@ -19,3 +19,7 @@ export function randDictionaries() {
   const dictionaries = [animals, colors, adjectives];
   return [...dictionaries];
 }
+
+export function randBoolean() {
+  return Math.random() < 0.5;
+}

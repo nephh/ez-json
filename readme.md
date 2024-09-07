@@ -18,6 +18,8 @@ EZ JSON is a CLI tool that generates JSON data based on user input. The goal is 
 
 ## Installation
 
+**_THESE DOCS ARE OUT OF DATE SINCE THE TYPESCRIPT REWRITE. PLEASE USE `ts-node` TO RUN `init.ts` IF YOU WANT TO USE EZ-JSON IN IT'S CURRENT STATE. YOU MUST ALSO CREATE A .ENV FILE IN THE ROOT DIRECTORY WITH A GOOGLE GEMINI AI API KEY AS `API_KEY="YOUR_KEY_HERE"`_**
+
 To install the tool, you'll need to have Node.js installed on your computer. Once you have Node.js installed, you can install the tool by cloning the repository and installing its dependencies:
 
 ```bash
@@ -36,7 +38,7 @@ EZ-JSON allows you to generate JSON objects based on key-value pairs that you de
 To use EZ-JSON, run the following command:
 
 ```bash
-node init.js [options] <objects>
+ts-node init.ts [options] <objects>
 ```
 
 In this command, `<objects>` represents the number of JSON objects you want to generate. If you don't specify a number, EZ-JSON will generate a single object by default.
@@ -56,13 +58,13 @@ Here are a few examples of how to use EZ-JSON:
 - To generate a single JSON object and print it to the console, run:
 
   ```bash
-  node init.js
+  ts-node init.js
   ```
 
 - To generate 5 JSON objects, print them to the console, and save them to a file, run:
 
   ```bash
-  node init.js -s 5
+  ts-node init.js -s 5
   ```
 
 Remember, you can combine options to tailor the command to your needs.

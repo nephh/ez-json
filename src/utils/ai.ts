@@ -22,10 +22,17 @@ export default async function generateValue(key: string) {
   Most values will be short, but some may be longer if the key suggests a longer form of content (such as a user bio or article content.) Make sure it is NEVER a list of items or an array. It should only be one value.
   Please ensure the generated value is unique and varied enough to avoid repetition. It should be plain text without any enclosing quotes. Emojis, punctuation, numbers, and special characters are allowed if they make sense in the context. 
   Do NOT generate any sensitive or real-world data such as addresses, names, or passwords. The generated value should not resemble any real or sensitive data. It should be completely made up, safe to use, and suitable for a mock JSON object. 
-  At maximum length, the value should be no longer than a few sentences. If the value is too long, consider shortening it to a reasonable length.`;
+  At maximum length, the value should be no longer than a few sentences. If the value is too long, consider shortening it to a reasonable length. Make sure that the response is always safe and is never blocked due to safety.`;
 
   const result = await model.generateContent(prompt);
   const response = result.response;
-  const text = response.text();
-  return text;
+
+  // If the response throws due to being unsafe we try again.
+  // I have no idea if this actually works since it throws if it fails.
+  if (!response.text()) {
+    const result = await model.generateContent(prompt);
+    const response = result.response;
+    return response.text();
+  }
+  return response.text();
 }

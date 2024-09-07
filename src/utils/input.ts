@@ -1,9 +1,8 @@
 import { input } from "@inquirer/prompts";
-import { argv } from "./yargs";
 import fs from "fs";
 
 export async function dataInput() {
-  const arr: Array<[string, string | number]> = [];
+  const arr: Array<[string, string | number | boolean]> = [];
   while (true) {
     let key = await input({
       message:
@@ -20,23 +19,32 @@ export async function dataInput() {
       message: "Enter a value: ",
     });
 
+    let parsedValue: string | number | boolean = isNaN(Number(value))
+      ? value.trim() === "true" || value.trim() === "false"
+        ? value.trim() === "true"
+        : value.trim()
+      : Number(value);
+
     key = key.trim();
-    const parsedValue = isNaN(Number(value)) ? value.trim() : Number(value);
 
     arr.push([key, parsedValue]);
   }
 }
 
-export async function fileInput() {
-  if (!argv.file) {
-    return;
+export async function fileInput(file: string) {
+  if (!file.endsWith(".json")) {
+    throw new Error("Invalid JSON file.");
   }
 
-  const fileData = fs.readFileSync(argv.file, "utf8");
+  const fileData = fs.readFileSync(file, "utf8");
   const match = fileData.match(/{([^}]*)}/);
-  const extractedText = match ? `{${match[1]}}` : "";
-  const keyValueArray: Array<[string, string | number]> = Object.entries(
-    JSON.parse(extractedText)
-  );
+
+  if (!match) {
+    throw new Error("Invalid JSON file.");
+  }
+
+  const extractedText = `{${match[1]}}`;
+  const keyValueArray: Array<[string, string | number | boolean]> =
+    Object.entries(JSON.parse(extractedText));
   return keyValueArray;
 }
