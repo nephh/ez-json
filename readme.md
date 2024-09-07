@@ -18,7 +18,7 @@ EZ JSON is a CLI tool that generates JSON data based on user input. The goal is 
 
 ## Installation
 
-**_THESE DOCS ARE OUT OF DATE SINCE THE TYPESCRIPT REWRITE. PLEASE USE `ts-node` TO RUN `init.ts` IF YOU WANT TO USE EZ-JSON IN IT'S CURRENT STATE. YOU MUST ALSO CREATE A .ENV FILE IN THE ROOT DIRECTORY WITH A GOOGLE GEMINI AI API KEY AS `API_KEY="YOUR_KEY_HERE"`_**
+**_THESE DOCS ARE OUT OF DATE SINCE THE TYPESCRIPT REWRITE. PLEASE USE `ts-node` TO RUN `init.ts` IF YOU WANT TO USE EZ-JSON IN IT'S CURRENT STATE. YOU MUST ALSO CREATE A .ENV FILE IN THE ROOT DIRECTORY WITH A GOOGLE GEMINI AI API KEY AS `API_KEY="YOUR_KEY_HERE"`. ALSO THE AI CODE GEN CAN BE WACKY AT TIMES. WITH ENOUGH INTEREST I WILL CONTINUE TO IMPROVE THE GENERATED VALUES_**
 
 To install the tool, you'll need to have Node.js installed on your computer. Once you have Node.js installed, you can install the tool by cloning the repository and installing its dependencies:
 
